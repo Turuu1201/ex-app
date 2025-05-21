@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156883132531",
+    "project_id": "diplom-323b8",
+    "storage_bucket": "diplom-323b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156883132531:android:66951d7d142dba2e254a06",
+        "android_client_info": {
+          "package_name": "com.example.meapp1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPcl5HnZCIlWe2S98dU5u7Srk8C372YLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
