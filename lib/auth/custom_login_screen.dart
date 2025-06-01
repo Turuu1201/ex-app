@@ -44,7 +44,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
 
       // ✅ Show success message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(isLogin ? 'Logged in' : 'Registered successfully'),
+        content: Text(isLogin ? 'Нэвтэрлээ' : 'Амжилттай бүртгэгдлээ'),
       ));
 
       // ✅ Navigate to HomeScreen manually
@@ -94,7 +94,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
                         child: TextField(
                           controller: nameController,
                           decoration: const InputDecoration(
-                            labelText: "Full Name",
+                            labelText: "Нэвтрэх нэр",
                             filled: true,
                           ),
                         ),
@@ -102,7 +102,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
                     TextField(
                       controller: emailController,
                       decoration: const InputDecoration(
-                        labelText: "Email",
+                        labelText: "И-мейл",
                         filled: true,
                       ),
                     ),
@@ -111,7 +111,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
                       controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
-                        labelText: "Password",
+                        labelText: "Нууц үг",
                         filled: true,
                       ),
                     ),
@@ -128,7 +128,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
                         ),
                         onPressed: handleAuth,
                         child: Text(
-                          isLogin ? 'Log In' : 'Sign Up',
+                          isLogin ? 'Нэвтрэх' : 'Бүртгүүлэх',
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -145,9 +145,7 @@ class _CustomAuthScreenState extends State<CustomAuthScreen> {
                         });
                       },
                       child: Text(
-                        isLogin
-                            ? "Don't have an account? Sign Up"
-                            : "Have an account? Log In",
+                        isLogin ? "Шинээр бүртгүүлэх" : "Нэвтрэх",
                         style: const TextStyle(color: Colors.grey),
                       ),
                     ),

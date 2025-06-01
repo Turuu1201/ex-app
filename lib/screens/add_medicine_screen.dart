@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class AddMedicineScreen extends StatefulWidget {
   const AddMedicineScreen({super.key});
@@ -13,6 +14,18 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
   final nameController = TextEditingController();
   final doseController = TextEditingController();
   TimeOfDay? selectedTime;
+
+  @override
+  void initState() {
+    super.initState();
+    requestNotificationPermission();
+  }
+
+  Future<void> requestNotificationPermission() async {
+    if (await Permission.notification.isDenied) {
+      await Permission.notification.request();
+    }
+  }
 
   Future<void> addMedicineForUser() async {
     final user = FirebaseAuth.instance.currentUser;
@@ -45,10 +58,7 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-
-    if (picked != null) {
-      setState(() => selectedTime = picked);
-    }
+    if (picked != null) setState(() => selectedTime = picked);
   }
 
   Widget buildCardTextField({
@@ -78,9 +88,10 @@ class _AddMedicineScreenState extends State<AddMedicineScreen> {
         selectedTime != null ? selectedTime!.format(context) : 'Цаг сонгоогүй';
 
     return Scaffold(
-      backgroundColor: const Color(0xFFeef4ff),
       appBar: AppBar(
-          title: const Text('Эм нэмэх'), backgroundColor: Color(0xFF1D3557)),
+        title: const Text('Эм нэмэх'),
+        backgroundColor: const Color(0xFF1D3557),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

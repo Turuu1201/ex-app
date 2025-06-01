@@ -1,0 +1,2 @@
+C:/Users/Diplom/ez_app/android/app/.cxx/RelWithDebInfo/4o23d6qz/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Diplom/ez_app/android/app/.cxx/RelWithDebInfo/4o23d6qz/x86_64/CMakeFiles/rebuild_cache.dir

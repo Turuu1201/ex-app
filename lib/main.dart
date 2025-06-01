@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/services.dart';
 
 import 'firebase_options.dart';
 import 'auth/custom_login_screen.dart';
-import 'main_navigation.dart'; 
+import 'main_navigation.dart';
+import 'services/notification_service.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await NotificationService.initNotification();
+
+  if (await Permission.notification.isDenied) {
+    await Permission.notification.request();
+  }
+
   runApp(const MyApp());
 }
 
@@ -26,8 +35,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFeef4ff),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF1D3557),
-            foregroundColor: const Color(0xFFeef4ff), // Text color
+            backgroundColor: const Color(0xFF1D3557),
+            foregroundColor: const Color(0xFFeef4ff),
             textStyle: const TextStyle(fontWeight: FontWeight.bold),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
             shape: RoundedRectangleBorder(
@@ -35,7 +44,6 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
         ),
@@ -65,7 +73,8 @@ class AuthGate extends StatelessWidget {
         }
 
         if (snapshot.hasData) {
-          return const MainNavigation(); 
+          NotificationService.scheduleAllUserMedicines();
+          return const MainNavigation();
         } else {
           return const CustomAuthScreen();
         }
